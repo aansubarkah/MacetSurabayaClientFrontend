@@ -1,0 +1,28 @@
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Direction</h3>
+
+        <div class="box-tools"></div>
+    </div>
+    <div class="box-body">
+        <div class="form-group">
+          {{gmap-place placeCoordinate='getOriginCoordinate' elementId='searchOriginText' placeholder='Origin'}}
+        </div>
+        <div class="form-group">
+          {{gmap-place placeCoordinate='getDestinationCoordinate' elementId='searchDestinationText' placeholder='Destination'}}
+        </div>
+        <div class="form-group">
+          {{select-picker value=lastminutes
+          content=times
+          optionLabelPath="content.label"
+          optionValuePath="content.value"
+          nothingSelectedMessage="Traffic about 30 minutes ago"}}
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" type="button" {{action 'getRoute'}}>Direction</button>
+        </div>
+    </div>
+    <div class="box-footer clearfix">
+        <div class="box-tools"></div>
+    </div>
+</div>

@@ -1,1 +1,5 @@
-{{outlet}}
+{{#if displayMap}}
+  {{partial "journey/map"}}
+{{else}}
+  {{partial "journey/form"}}
+{{/if}}

@@ -12,12 +12,10 @@ export default DS.RESTAdapter.extend({
   shouldBackgroundReloadRecord: function () {
     return false;
   },
-  namespace: 'manager',
+  namespace: 'client',
   host: 'http://apitraffic.aansubarkah.net',// @todo change this on production server
   //host: 'http://localhost:8765',// @todo change this on production server
   ajax: function (url, method, hash) {
-    //"Accept": "application/json",
-    //"Content-Type": "application/json"
     hash = hash || {};
     hash.crossDomain = true;
     hash.xhrFields = {withCredentials: false};

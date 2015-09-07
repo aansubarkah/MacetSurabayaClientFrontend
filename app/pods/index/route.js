@@ -17,32 +17,20 @@ export default Ember.Route.extend({
     }
 
     return Ember.RSVP.hash({
-      marker: this.store.query('marker', query),
-      category: this.store.findAll('category'),
-      weather: this.store.findAll('weather'),
-      respondent: this.store.findAll('respondent')
+      markerview: this.store.query('markerview', query)
     });
 
   },
   setupController: function (controller, model) {
-    controller.set('marker', model.marker);
-    var markers = [];
-    controller.set('markers', markers);
-    controller.set('category', model.category);
-    var categories = [];
-    controller.set('categories', categories);
-    controller.set('weather', model.weather);
-    var weathers = [];
-    controller.set('weathers', weathers);
-    controller.set('respondent', model.respondent);
-    var respondents = [];
-    controller.set('respondents', respondents);
+    controller.set('markerview', model.markerview);
+    var markerviews = [];
+    controller.set('markerviews', markerviews);
 
     // ---------------------------------------------------------
     // ------------- create markers to display on maps ---------
     // ---------------------------------------------------------
     var markersForDisplay = [];
-    model.marker.forEach(function (item) {
+    model.markerview.forEach(function (item) {
       var isPinned = "Tidak";
       var isCleared = "Belum";
 
@@ -58,13 +46,14 @@ export default Ember.Route.extend({
         id: hashids.encode(item.get('id')),
         lat: item.get('lat'),
         lng: item.get('lng'),
-        title: item.get('category.name'),
-        icon: 'images/dark/' + item.get('category.id') + '.png',
+        title: item.get('category_name'),
+        icon: 'images/dark/' + item.get('category_id') + '.png',
         infoWindow: {
           content: "<p><strong>Waktu:&nbsp;</strong>" + moment(item.get('created')).fromNow() + "</p>" +
           "<p>(" + moment(item.get('created')).format('dddd, Do MMMM YYYY, h:mm:ss A') + ")</p>" +
+          "<p><strong>Tempat:&nbsp;</strong>" + item.get('place_name') + "</p>" +
           "<p><strong>Keterangan:&nbsp;</strong>" +
-          item.get('info') + "</p><p><strong>Cuaca:&nbsp</strong>" + item.get('weather.name') + "</p>" +
+          item.get('info') + "</p><p><strong>Cuaca:&nbsp</strong>" + item.get('weather_name') + "</p>" +
           "<p><strong>Permanen:&nbsp;</strong>" + isPinned + "</p><p><strong>Selesai:&nbsp;</strong>" +
           isCleared + "</p>",
           visible: false
@@ -82,11 +71,5 @@ export default Ember.Route.extend({
     lastminutes: {
       refreshModel: true
     }
-  },
-  beforeModel: function () {
-    var _this = this;
-    return this.store.findAll('category').then(function (result) {
-      _this.set('category', result);
-    });
   }
 });

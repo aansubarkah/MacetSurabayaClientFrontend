@@ -17,6 +17,8 @@ Router.map(function() {
   this.route('weather');
   this.route('respondents');
   this.route('respondent');
+  this.route('markerview');
+  this.route('markerviews');
 });
 
 export default Router;

@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'macet-surabaya-client-frontend',
+    podModulePrefix: 'macet-surabaya-client-frontend/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
@@ -16,6 +17,21 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://cdn.datatables.net https://code.jquery.com https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com *.googleapis.com maps.gstatic.com",
+      'font-src': "'self' https://maxcdn.bootstrapcdn.com https://cdn.datatables.net http://fonts.gstatic.com https://fonts.gstatic.com https://code.ionicframework.com",
+      'connect-src': "'self' http://localhost:8765 http://apitraffic.aansubarkah.net",
+      'img-src': "'self' *.googleapis.com maps.gstatic.com csi.gstatic.com",
+      'style-src': "'self' 'unsafe-inline' https://code.ionicframework.com https://maxcdn.bootstrapcdn.com https://cdn.datatables.net fonts.googleapis.com map.gstatic.com",
+      'media-src': "'self'"
+    },
+
+    googleMap: {
+      libraries: ['places', 'geometry'],
+      apiKey: 'AIzaSyA7dciHJOSiR8annWOSISIdKFF6T3cuyMQ'
     }
   };
 

@@ -36,6 +36,9 @@ export default Ember.Controller.extend({
     refreshPlace(lat, lng){
       this.set('lat', lat);
       this.set('lng', lng);
+    },
+    refreshTime(){
+      console.log(this.get('lastminutes'));
     }
   }
 });

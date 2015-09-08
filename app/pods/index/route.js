@@ -16,21 +16,18 @@ export default Ember.Route.extend({
       query.lastminutes = params.lastminutes;
     }
 
-    return Ember.RSVP.hash({
-      markerview: this.store.query('markerview', query)
-    });
+    return this.store.query('markerview', query);
 
   },
   setupController: function (controller, model) {
-    controller.set('markerview', model.markerview);
-    var markerviews = [];
-    controller.set('markerviews', markerviews);
+    this._super.apply(this, arguments);
 
     // ---------------------------------------------------------
     // ------------- create markers to display on maps ---------
     // ---------------------------------------------------------
     var markersForDisplay = [];
-    model.markerview.forEach(function (item) {
+
+    model.forEach(function (item) {
       var isPinned = "Tidak";
       var isCleared = "Belum";
 

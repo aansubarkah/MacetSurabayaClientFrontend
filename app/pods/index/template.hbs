@@ -6,6 +6,7 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Traffic</h3>
+
         <div class="box-tools">
           {{#gmap-search refreshPlace='refreshPlace' elementId='searchPlaceText'}}{{/gmap-search}}
         </div>
@@ -16,11 +17,12 @@
     <div class="box-footer clearfix">
         <div class="box-tools">
             <div class="form-group pull-right">
-              {{select-picker value=lastminutes
+              {{ember-selectize
               content=times
-              optionLabelPath="content.label"
               optionValuePath="content.value"
-              nothingSelectedMessage="Traffic about 30 minutes ago"}}
+              optionLabelPath="content.label"
+              value=lastminutes
+              placeholder="Traffic about 30 minutes ago" }}
             </div>
         </div>
     </div>

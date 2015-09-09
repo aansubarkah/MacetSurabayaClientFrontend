@@ -19,6 +19,7 @@ Router.map(function() {
   this.route('respondent');
   this.route('markerview');
   this.route('markerviews');
+  this.route('loading');
 });
 
 export default Router;
